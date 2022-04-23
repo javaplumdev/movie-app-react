@@ -23,7 +23,6 @@ function App() {
 
 	function handleSearch() {
 		console.log(searchHolder.movieName);
-		console.log(searchMovies);
 	}
 
 	function handleChange(event) {
