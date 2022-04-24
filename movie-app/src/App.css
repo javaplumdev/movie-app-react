@@ -1,6 +1,26 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(22, 21, 21);
+}
+
 .navbar {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	background-color: aquamarine;
+}
+
+.show-results-movies {
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.movie-results-holder {
+	margin: 0.5em;
 }
