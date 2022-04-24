@@ -13,7 +13,9 @@ function Navbar({ handleSearch, handleChange, searchHolder }) {
 					name="movieName"
 					value={searchHolder.movieName}
 				/>
-				<button onClick={handleSearch}>Search</button>
+				<Link to="/ShowResultsMovie">
+					<button onClick={handleSearch}>Search</button>
+				</Link>
 			</div>
 		</div>
 	);
