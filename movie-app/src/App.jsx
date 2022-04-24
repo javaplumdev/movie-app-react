@@ -7,8 +7,7 @@ import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import ShowMovie from './components/ShowMovie';
 import ShowResultsMovie from './components/ShowResultsMovies';
-
-import axios from 'axios';
+import ShowMovieDetails from './components/ShowMovieDetails';
 
 function App() {
 	const API_KEY = `3774131603660110c024a22c82fb41fe`;
@@ -47,12 +46,27 @@ function App() {
 				<Routes>
 					<Route path="/" element={<LandingPage handleMatch={handleMatch} />} />
 					<Route
-						path="/ShowMovie/:id"
+						path="/ShowMovie/:id/:title"
 						element={<ShowMovie matchHolder={matchHolder} />}
 					/>
 					<Route
 						path="/ShowResultsMovie"
-						element={<ShowResultsMovie searchHolder={searchHolder} />}
+						element={
+							<ShowResultsMovie
+								searchHolder={searchHolder}
+								handleMatch={handleMatch}
+							/>
+						}
+					/>
+					<Route
+						path="ShowMovieDetails/:id/:title"
+						element={
+							<ShowMovieDetails
+								handleMatch={handleMatch}
+								matchHolder={matchHolder}
+								searchHolder={searchHolder}
+							/>
+						}
 					/>
 				</Routes>
 			</div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
-function ShowResultsMovie({ searchHolder, handleMatch }) {
+function ShowMovieDetails({ matchHolder, searchHolder }) {
 	const API_KEY = `3774131603660110c024a22c82fb41fe`;
 	const image_path = `https://image.tmdb.org/t/p/w342`;
 	const [searchMovies, setSearchMovies] = useState([]);
@@ -21,23 +20,18 @@ function ShowResultsMovie({ searchHolder, handleMatch }) {
 
 	return (
 		<>
-			{searchMovies.length > 0 ? (
-				searchMovies.map((movie) => {
+			{searchMovies.map((movie) => {
+				if (matchHolder === movie.id) {
 					return (
-						<div key={movie.id} className="movie-results-holder">
-							<img src={image_path + movie.poster_path} />
-							<p>{movie.original_title}</p>
-							<Link to={`/ShowMovieDetails/${movie.id}/${movie.title}`}>
-								<button onClick={() => handleMatch(movie.id)}>More info</button>
-							</Link>
+						<div key={movie.id}>
+							<img src={image_path + movie.poster_path} alt="" />
+							<p key={movie.id}>{movie.original_title}</p>
 						</div>
 					);
-				})
-			) : (
-				<p>There are no results </p>
-			)}
+				}
+			})}
 		</>
 	);
 }
 
-export default ShowResultsMovie;
+export default ShowMovieDetails;
