@@ -19,6 +19,7 @@ function LandingPage({ handleMatch }) {
 	const API_KEY = `3774131603660110c024a22c82fb41fe`;
 	const image_path = `https://image.tmdb.org/t/p/w342`;
 	const popular_movies_url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1&include_video=true`;
+	const trending_movies_url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
 	const [postPopularMovies, setPostPopularMovies] = React.useState([]);
 
 	React.useEffect(() => {

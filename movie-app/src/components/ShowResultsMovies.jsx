@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 import { imageStyle } from './Styling';
 
@@ -22,27 +23,38 @@ function ShowResultsMovie({ searchHolder, handleMatch }) {
 	}, [searchHolder.movieName]);
 
 	return (
-		<div className="show-results-movies">
-			{searchMovies.length > 0 ? (
-				searchMovies.map((movie) => {
-					return (
-						<Link
-							to={`/ShowMovieDetails/${movie.id}/${movie.title}`}
-							key={movie.id}
-						>
-							<div
-								className="movie-results-holder"
-								onClick={() => handleMatch(movie.id)}
-							>
-								<img src={image_path + movie.poster_path} style={imageStyle} />
-							</div>
-						</Link>
-					);
-				})
-			) : (
-				<p>There are no results </p>
-			)}
-		</div>
+		<>
+			<Typography variant="h5" className="results-title" color="white">
+				There are {searchMovies.length} results in search{' '}
+				{searchHolder.movieName}
+			</Typography>
+			<div className="show-results-movies">
+				{searchMovies.length > 0 ? (
+					searchMovies.map((movie) => {
+						return (
+							<>
+								<Link
+									to={`/ShowMovieDetails/${movie.id}/${movie.title}`}
+									key={movie.id}
+								>
+									<div
+										className="movie-results-holder"
+										onClick={() => handleMatch(movie.id)}
+									>
+										<img
+											src={image_path + movie.poster_path}
+											style={imageStyle}
+										/>
+									</div>
+								</Link>
+							</>
+						);
+					})
+				) : (
+					<p>There are no results </p>
+				)}
+			</div>
+		</>
 	);
 }
 
