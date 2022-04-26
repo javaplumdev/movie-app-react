@@ -14,7 +14,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 
 // Styling
-import { navbarLink, navBarColor } from './Styling';
+import { navbarLink, navBarColor, buttonStyling } from './Styling';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -98,7 +98,9 @@ function Navbar({ handleSearch, handleChange, searchHolder }) {
 						/>
 					</Search>
 					<Link to="/ShowResultsMovie" style={navbarLink}>
-						<Button variant="contained">Search</Button>
+						<Button variant="contained" style={buttonStyling}>
+							Search
+						</Button>
 					</Link>
 				</Toolbar>
 			</AppBar>
@@ -107,22 +109,3 @@ function Navbar({ handleSearch, handleChange, searchHolder }) {
 }
 
 export default Navbar;
-
-{
-	/* <div className="navbar">
-			<Link to="/">
-				<p>Navbar</p>
-			</Link>
-			<div className="inputs">
-				<input
-					type="text"
-					onChange={handleChange}
-					name="movieName"
-					value={searchHolder.movieName}
-				/>
-				<Link to="/ShowResultsMovie">
-					<button onClick={handleSearch}>Search</button>
-				</Link>
-			</div>
-		</div> */
-}

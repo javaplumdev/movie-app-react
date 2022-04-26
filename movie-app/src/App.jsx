@@ -8,7 +8,6 @@ import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
 import ShowMovie from './components/ShowMovie';
 import ShowResultsMovie from './components/ShowResultsMovies';
-import ShowMovieDetails from './components/ShowMovieDetails';
 
 function App() {
 	const [matchHolder, setMatchHolder] = useState(null);
@@ -17,6 +16,7 @@ function App() {
 	function handleMatch(id) {
 		setMatchHolder(id);
 		console.log(id);
+		localStorage.setItem('matchHolder', id);
 	}
 
 	function handleSearch() {
@@ -58,16 +58,6 @@ function App() {
 								<ShowResultsMovie
 									searchHolder={searchHolder}
 									handleMatch={handleMatch}
-								/>
-							}
-						/>
-						<Route
-							path="ShowMovieDetails/:id/:title"
-							element={
-								<ShowMovieDetails
-									handleMatch={handleMatch}
-									matchHolder={matchHolder}
-									searchHolder={searchHolder}
 								/>
 							}
 						/>

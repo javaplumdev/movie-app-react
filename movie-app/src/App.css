@@ -29,3 +29,34 @@ body {
 .movie-results-holder {
 	margin: 0.5em;
 }
+
+.trending-movies {
+	display: flex;
+}
+
+.backdrop_path img {
+	height: 200px;
+	width: 100%;
+	border-radius: 20px;
+}
+
+.movie-details,
+.movie-details-suggestions {
+	margin-left: 1em;
+}
+
+.suggestions {
+	margin: 1em;
+	background-color: rgb(34, 33, 33);
+	padding: 1em;
+	display: flex;
+}
+
+.suggestions img {
+	border-radius: 20px;
+	height: 125px;
+}
+
+.movie-details-poster {
+	height: 400px;
+}

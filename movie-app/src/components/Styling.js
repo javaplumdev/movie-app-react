@@ -27,3 +27,8 @@ export const breakPoints = {
 		slidesPerView: 7,
 	},
 };
+
+export const buttonStyling = {
+	color: 'black',
+	backgroundColor: 'rgb(132, 245, 207)',
+};

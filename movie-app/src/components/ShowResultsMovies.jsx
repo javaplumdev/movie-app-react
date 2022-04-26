@@ -34,7 +34,7 @@ function ShowResultsMovie({ searchHolder, handleMatch }) {
 						return (
 							<>
 								<Link
-									to={`/ShowMovieDetails/${movie.id}/${movie.title}`}
+									to={`/ShowMovie/${movie.id}/${movie.title}`}
 									key={movie.id}
 								>
 									<div
@@ -51,7 +51,9 @@ function ShowResultsMovie({ searchHolder, handleMatch }) {
 						);
 					})
 				) : (
-					<p>There are no results </p>
+					<Typography variant="h4" color="#fff">
+						There are no results :({' '}
+					</Typography>
 				)}
 			</div>
 		</>
