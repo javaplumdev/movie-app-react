@@ -24,19 +24,24 @@ function LandingPage({ handleMatch }) {
 	const image_path = `https://image.tmdb.org/t/p/w342`;
 	const popular_movies_url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1&include_video=true`;
 	const trending_movies_url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+	const upcoming_movies_url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
 
 	const [postPopularMovies, setPostPopularMovies] = React.useState([]);
 	const [postTrendingMovies, setPostTrendingMovies] = React.useState([]);
+	const [postUpcomingMovies, setPostUpcomingMovies] = React.useState([]);
 
 	React.useEffect(() => {
 		axios.get(popular_movies_url).then((response) => {
 			setPostPopularMovies(response.data.results);
 		});
-
 		axios.get(trending_movies_url).then((response) => {
 			setPostTrendingMovies(response.data.results);
 		});
+		axios.get(upcoming_movies_url).then((response) => {
+			setPostUpcomingMovies(response.data.results);
+		});
 	}, []);
+
 	const suggestions = postTrendingMovies.slice(18);
 
 	return (
@@ -144,6 +149,35 @@ function LandingPage({ handleMatch }) {
 
 			<Swiper breakpoints={breakPoints} spaceBetween={0}>
 				{postPopularMovies
+					.filter((movie) => movie.poster_path)
+					.map((movie) => {
+						return (
+							<SwiperSlide key={movie.id}>
+								<Link to={`/ShowMovie/${movie.id}/${movie.original_title}`}>
+									<Box onClick={() => handleMatch(movie.id)}>
+										<div className="movie-holder">
+											<img
+												src={image_path + movie.poster_path}
+												style={imageStyle}
+											/>
+										</div>
+									</Box>
+								</Link>
+							</SwiperSlide>
+						);
+					})}
+			</Swiper>
+
+			<Typography
+				variant="h5"
+				color="white"
+				style={{ marginTop: '.5em', marginBottom: '.5em' }}
+			>
+				Upcoming Movies
+			</Typography>
+
+			<Swiper breakpoints={breakPoints} spaceBetween={0}>
+				{postUpcomingMovies
 					.filter((movie) => movie.poster_path)
 					.map((movie) => {
 						return (

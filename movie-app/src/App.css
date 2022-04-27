@@ -57,6 +57,18 @@ body {
 	height: 125px;
 }
 
+.show-movie {
+	margin-top: 2em;
+}
+
 .movie-details-poster {
 	height: 400px;
+	border-radius: 20px;
+	width: 100%;
+}
+
+.movie-ratings {
+	display: flex;
+	align-items: center;
+	margin: 0.5em 0;
 }

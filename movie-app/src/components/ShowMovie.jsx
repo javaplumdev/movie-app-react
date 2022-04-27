@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import StarIcon from '@mui/icons-material/Star';
 
 function ShowMovie({}) {
 	const matchesHolder = localStorage.getItem('matchHolder');
@@ -21,18 +22,43 @@ function ShowMovie({}) {
 		<>
 			{postMovieDetails.map((movie) => {
 				return (
-					<div key={movie.id}>
+					<div key={movie.id} className="show-movie">
 						<Grid container>
-							<Grid item md={4}>
+							<Grid item sm={3} style={{ textAlign: 'center' }}>
 								<img
 									src={image_path + movie.poster_path}
 									className="movie-details-poster"
 								/>
 							</Grid>
-							<Grid item md={8}>
-								<Typography color="fff" variant="h4">
+							<Grid item sm={8} style={{ padding: '1em' }}>
+								<Typography color="#fff" variant="h3">
 									{movie.original_title}
 								</Typography>
+								{movie.genres.map((genre) => {
+									return (
+										<Typography
+											color="#fff"
+											variant="caption"
+											style={{ margin: '0 .5em' }}
+										>
+											{genre.name}
+										</Typography>
+									);
+								})}
+								<Typography color="#fff" variant="h6">
+									<div className="movie-ratings">
+										<StarIcon />
+										{movie.vote_average}
+										<Typography style={{ marginLeft: '.5em' }}>
+											Vote Average
+										</Typography>
+									</div>
+								</Typography>
+								<Typography color="#fff" variant="h5">
+									{' '}
+									Overview{' '}
+								</Typography>
+								<Typography color="#fff"> {movie.overview}</Typography>
 							</Grid>
 						</Grid>
 					</div>
