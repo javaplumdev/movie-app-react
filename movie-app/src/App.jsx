@@ -50,7 +50,12 @@ function App() {
 						/>
 						<Route
 							path="/ShowMovie/:id/:title"
-							element={<ShowMovie matchHolder={matchHolder} />}
+							element={
+								<ShowMovie
+									matchHolder={matchHolder}
+									handleMatch={handleMatch}
+								/>
+							}
 						/>
 						<Route
 							path="/ShowResultsMovie"

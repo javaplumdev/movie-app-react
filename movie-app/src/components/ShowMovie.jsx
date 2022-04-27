@@ -4,17 +4,35 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
 
-function ShowMovie({}) {
+import Box from '@mui/material/Box';
+
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import { Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { imageStyle, breakPoints, buttonStyling } from './Styling';
+import 'swiper/css';
+
+// Import Swiper styles
+import 'swiper/css';
+
+function ShowMovie({ handleMatch }) {
 	const matchesHolder = localStorage.getItem('matchHolder');
 
 	const API_KEY = `3774131603660110c024a22c82fb41fe`;
 	const image_path = `https://image.tmdb.org/t/p/w342`;
 	const get_movie_details = `https://api.themoviedb.org/3/movie/${matchesHolder}?api_key=${API_KEY}&language=en-US`;
+	const upcoming_movies_url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
+
 	const [postMovieDetails, setPostMovieDetails] = useState([]);
+	const [postUpcomingMovies, setPostUpcomingMovies] = React.useState([]);
 
 	useEffect(() => {
 		axios.get(get_movie_details).then((response) => {
 			setPostMovieDetails([response.data]);
+		});
+		axios.get(upcoming_movies_url).then((response) => {
+			setPostUpcomingMovies(response.data.results);
 		});
 	}, []);
 
@@ -64,6 +82,35 @@ function ShowMovie({}) {
 					</div>
 				);
 			})}
+
+			<Typography
+				variant="h5"
+				color="white"
+				style={{ marginTop: '.5em', marginBottom: '.5em' }}
+			>
+				Upcoming Movies
+			</Typography>
+
+			<Swiper breakpoints={breakPoints} spaceBetween={0}>
+				{postUpcomingMovies
+					.filter((movie) => movie.poster_path)
+					.map((movie) => {
+						return (
+							<SwiperSlide key={movie.id}>
+								<Link to={`/ShowMovie/${movie.id}/${movie.original_title}`}>
+									<Box onClick={() => handleMatch(movie.id)}>
+										<div className="movie-holder">
+											<img
+												src={image_path + movie.poster_path}
+												style={imageStyle}
+											/>
+										</div>
+									</Box>
+								</Link>
+							</SwiperSlide>
+						);
+					})}
+			</Swiper>
 		</>
 	);
 }
