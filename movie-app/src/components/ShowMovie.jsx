@@ -6,11 +6,10 @@ import StarIcon from '@mui/icons-material/Star';
 
 import Box from '@mui/material/Box';
 
-import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { Autoplay } from 'swiper';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { imageStyle, breakPoints, buttonStyling } from './Styling';
+import { imageStyle, breakPoints } from './Styling';
 import 'swiper/css';
 
 // Import Swiper styles
