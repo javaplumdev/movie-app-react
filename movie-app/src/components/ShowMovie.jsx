@@ -15,16 +15,14 @@ import 'swiper/css';
 // Import Swiper styles
 import 'swiper/css';
 
-function ShowMovie({ handleMatch }) {
-	const matchesHolder = localStorage.getItem('matchHolder');
-
+function ShowMovie({ handleMatch, getLocalStorage }) {
 	const API_KEY = `3774131603660110c024a22c82fb41fe`;
 	const image_path = `https://image.tmdb.org/t/p/w342`;
-	const get_movie_details = `https://api.themoviedb.org/3/movie/${matchesHolder}?api_key=${API_KEY}&language=en-US`;
+	const get_movie_details = `https://api.themoviedb.org/3/movie/${getLocalStorage}?api_key=${API_KEY}&language=en-US`;
 	const upcoming_movies_url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
 
 	const [postMovieDetails, setPostMovieDetails] = useState([]);
-	const [postUpcomingMovies, setPostUpcomingMovies] = React.useState([]);
+	const [postUpcomingMovies, setPostUpcomingMovies] = useState([]);
 
 	useEffect(() => {
 		axios.get(get_movie_details).then((response) => {

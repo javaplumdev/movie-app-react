@@ -10,13 +10,13 @@ import ShowMovie from './components/ShowMovie';
 import ShowResultsMovie from './components/ShowResultsMovies';
 
 function App() {
-	const [matchHolder, setMatchHolder] = useState(null);
 	const [searchHolder, setSearchHolder] = useState({ movieName: '' });
 
+	const [getLocalStorage, setGetLocalStorage] = useState(null);
+
 	function handleMatch(id) {
-		setMatchHolder(id);
-		console.log(id);
 		localStorage.setItem('matchHolder', id);
+		setGetLocalStorage(localStorage.getItem('matchHolder'));
 	}
 
 	function handleSearch() {
@@ -52,8 +52,8 @@ function App() {
 							path="/ShowMovie/:id/:title"
 							element={
 								<ShowMovie
-									matchHolder={matchHolder}
 									handleMatch={handleMatch}
+									getLocalStorage={getLocalStorage}
 								/>
 							}
 						/>
